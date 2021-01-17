@@ -16,7 +16,8 @@ const Chat = ({ location, history }) => {
     const [users, setUsers] = useState([]);
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
-
+    const [disconnected, setDisconnected] = useState(false)
+    
     useEffect(() => {
         const { name, room } = queryString.parse(location.search)
 
@@ -45,7 +46,17 @@ const Chat = ({ location, history }) => {
         socket.on('roomData', ({ users }) => {
             setUsers(users);
         });
-    }, [messages])
+        socket.on('disconnect', () => {
+            setDisconnected(true)
+        })
+    }, [messages, history])
+
+    useEffect(() => {
+        if (disconnected) {
+            alert('You have been disconnected')
+            history.push('/')
+        }
+    }, [disconnected, history])
 
     // Send Message
     const sendMessage = message => {
@@ -53,8 +64,6 @@ const Chat = ({ location, history }) => {
             socket.emit('sendMessage', message, () => setMessage(''))
         }
     }
-
-    console.log(users)
 
     return (
         <div className="outerContainer">

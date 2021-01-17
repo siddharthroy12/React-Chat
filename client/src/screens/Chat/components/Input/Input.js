@@ -7,8 +7,7 @@ const Input = ({message, setMessage, sendMessage}) => (
             type="text"
             placeholder="Type a message"
             value={message}
-            onChange={e => setMessage(e.target.value)}
-            onKeyPress={e => e.key === 'Enter' ? sendMessage(message) : null}>
+            onChange={e => setMessage(e.target.value)}>
         </input>
         <button className="sendButton" onClick={e => {
             e.preventDefault()

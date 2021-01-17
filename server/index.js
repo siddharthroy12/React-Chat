@@ -10,7 +10,9 @@ const PORT = process.env.PORT || 5000
 
 const app = express()
 
-app.use(express.static(path.join(__dirname, '/../client/build')));
+if (process.env.APP_ENV === "production") {
+    app.use(express.static(path.join(__dirname, '/../client/build')))
+}
 
 app.use(router)
 
