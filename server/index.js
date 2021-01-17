@@ -1,5 +1,6 @@
 const express = require('express')
 const socketio = require('socket.io')
+const path = require('path')
 const http = require('http')
 const router = require('./router')
 
@@ -8,6 +9,8 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require('./users')
 const PORT = process.env.PORT || 5000
 
 const app = express()
+
+app.use(express.static(path.join(__dirname, '/../client/build')));
 
 app.use(router)
 

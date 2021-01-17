@@ -1,3 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
+# There is nothing for a bot
 User-agent: *
 Disallow:

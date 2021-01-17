@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "yarn --cwd server server",
     "client": "yarn --cwd client start",
     "server": "yarn --cwd server start",
-    "dev": "concurrently \"yarn run client\" \"yarn run server\""
+    "dev": "concurrently \"yarn run client\" \"yarn run server\"",
+    "build": "yarn --cwd client build"
   },
   "author": "Siddharth Roy <siddharthroy36912@gmail.com>",
   "license": "MIT",
